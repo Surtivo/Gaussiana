@@ -6,7 +6,7 @@
 #define LARGURA 70
 #define ALTURA 20
 
-// Função para gerar um número aleatório com distribuição normal
+// FunÃ§Ã£o para gerar um nÃºmero aleatÃ³rio com distribuiÃ§Ã£o normal
 void gerar_gaussiano(double *x1, double *x2) {
     double u1 = (double)rand() / RAND_MAX;
     double u2 = (double)rand() / RAND_MAX;
@@ -17,26 +17,26 @@ void gerar_gaussiano(double *x1, double *x2) {
     *x2 = r * sin(theta);
 }
 
-// Função para gerar um número aleatório com distribuição normal com média mu e desvio sigma
+// FunÃ§Ã£o para gerar um nÃºmero aleatÃ³rio com distribuiÃ§Ã£o normal com mÃ©dia mu e desvio sigma
 double gaussiano(double mu, double sigma) {
     double x1, x2;
     gerar_gaussiano(&x1, &x2);
     return mu + sigma * x1;
 }
 
-// Função para calcular a densidade da distribuição normal
+// FunÃ§Ã£o para calcular a densidade da distribuiÃ§Ã£o normal
 double densidade_gaussiana(double x, double mu, double sigma) {
     double exponencial = exp(-0.5 * pow((x - mu) / sigma, 2));
     return (1 / (sigma * sqrt(2 * M_PI))) * exponencial;
 }
 
 int main() {
-    srand(time(NULL)); // Inicializa o gerador de números aleatórios
+    srand(time(NULL)); // Inicializa o gerador de nÃºmeros aleatÃ³rios
 
-    // Definições
-    double mu = 0.0;       // Média
-    double sigma = 1.0;    // Desvio padrão
-    int n = 1000;          // Número de amostras
+    // DefiniÃ§Ãµes
+    double mu = 0.0;       // MÃ©dia
+    double sigma = 1.0;    // Desvio padrÃ£o
+    int n = 1000;          // NÃºmero de amostras
     int histograma[LARGURA] = {0}; // Contador para o histograma
 
     // Gerar amostras e preencher o histograma
@@ -48,7 +48,7 @@ int main() {
         }
     }
 
-    // Encontrar o valor máximo no histograma para normalizar
+    // Encontrar o valor mÃ¡ximo no histograma para normalizar
     int max_valor = 0;
     for (int i = 0; i < LARGURA; i++) {
         if (histograma[i] > max_valor) {
@@ -56,7 +56,7 @@ int main() {
         }
     }
 
-    // Plotar o gráfico
+    // Plotar o grÃ¡fico
     for (int y = ALTURA; y >= 0; y--) {
         for (int x = 0; x < LARGURA; x++) {
             if ((histograma[x] * ALTURA / max_valor) >= y) {
@@ -75,7 +75,7 @@ int main() {
 /*
 
 COM SRAND:
-A função rand realiza uma distriuição uniforme, então não é possível gerar uma Gaussiana com ela.
+A funÃ§Ã£o rand realiza uma distribuiÃ§Ã£o uniforme, entÃ£o nÃ£o Ã© possÃ­vel gerar uma Gaussiana com ela.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,18 +86,18 @@ A função rand realiza uma distriuição uniforme, então não é possível gerar uma G
 #define NUM_AMOSTRAS 1000
 
 int main() {
-    srand(time(NULL)); // Inicializa o gerador de números aleatórios
+    srand(time(NULL)); // Inicializa o gerador de nÃºmeros aleatÃ³rios
 
     // Contador para o histograma
     int histograma[LARGURA] = {0};
 
     // Gerar amostras e preencher o histograma
     for (int i = 0; i < NUM_AMOSTRAS; i++) {
-        int valor = rand() % LARGURA; // Número aleatório entre 0 e LARGURA-1
+        int valor = rand() % LARGURA; // NÃºmero aleatÃ³rio entre 0 e LARGURA-1
         histograma[valor]++;
     }
 
-    // Encontrar o valor máximo no histograma para normalizar
+    // Encontrar o valor mÃ¡ximo no histograma para normalizar
     int max_valor = 0;
     for (int i = 0; i < LARGURA; i++) {
         if (histograma[i] > max_valor) {
@@ -105,7 +105,7 @@ int main() {
         }
     }
 
-    // Plotar o gráfico
+    // Plotar o grÃ¡fico
     for (int y = ALTURA; y >= 0; y--) {
         for (int x = 0; x < LARGURA; x++) {
             if ((histograma[x] * ALTURA / max_valor) >= y) {
